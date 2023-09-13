@@ -1,0 +1,28 @@
+{
+  "name": "poweredcache/image-optimizer-pro",
+  "description": "Image Optimizer PRO",
+  "authors": [
+    {
+      "name": "poweredcache",
+      "email": "support@poweredcache.com",
+      "homepage": "https://poweredcache.com",
+      "role": "Developer"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "ImageOptimizerPro\\": "includes/classes/"
+    }
+  },
+  "require-dev": {
+    "10up/phpcs-composer": "dev-master"
+  },
+  "scripts": {
+    "lint": "phpcs . -s",
+    "lint-fix": "phpcbf ."
+  }
+}

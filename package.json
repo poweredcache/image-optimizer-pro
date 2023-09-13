@@ -1,0 +1,38 @@
+{
+  "name": "image-optimizer-pro",
+  "version": "1.0.0",
+  "description": "WordPress plugin for Image Optimization",
+  "author": {
+    "name": "poweredcache",
+    "email": "support@poweredcache.com",
+    "url": "https://poweredcache.com",
+    "role": "developer"
+  },
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "start": "composer install && npm install --production=false && npm run build",
+    "watch": "10up-toolkit watch",
+    "build": "10up-toolkit build",
+    "format-js": "10up-toolkit format-js",
+    "lint-js": "10up-toolkit lint-js",
+    "lint-style": "10up-toolkit lint-style",
+    "test": "10up-toolkit test-unit-jest",
+    "make-pot": "wp i18n make-pot . languages/image-optimizer-pro.pot --include='includes'",
+    "build-release": "npm install --production=false && composer install && npm run build && npm run make-pot"
+  },
+  "devDependencies": {
+    "10up-toolkit": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "10up-toolkit": {
+    "entry": {
+      "image-optimizer": "./assets/js/frontend/image-optimizer.js"
+    },
+    "wpDependencyExternals": false
+  }
+}
