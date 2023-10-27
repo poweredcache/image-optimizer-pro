@@ -51,7 +51,7 @@ function init() {
 	 *
 	 * @since 1.0
 	 */
-	do_action( 'powered_cache_init' );
+	do_action( 'image_optimizer_pro_init' );
 }
 
 /**
