@@ -27,6 +27,9 @@ __Documentation__: [https://docs.poweredcache.com/image-optimization/](https://d
 = Contributing & Bug Report =
 Bug reports and pull requests are welcome on [Github](https://github.com/poweredcache/image-optimizer-pro/).
 
+== Privacy Policy ==
+Our plugin enhances website performance by distributing image requests to servers worldwide. In this process, we may collect standard visitor information like IP addresses.
+For detailed insights into how we handle this data and uphold user privacy, please refer to our [Privacy Policy](https://poweredcache.com/privacy/).
 
 == Installation ==
 
