@@ -76,16 +76,3 @@ function activate( $network_wide ) {
 	}
 
 }
-
-/**
- * Deactivate the plugin
- *
- * Uninstall routines should be in uninstall.php
- *
- * @param bool $network_wide Whether network-wide configuration or not
- *
- * @return void
- */
-function deactivate( $network_wide ) {
-
-}
