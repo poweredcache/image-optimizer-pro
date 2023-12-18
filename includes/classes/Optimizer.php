@@ -14,9 +14,9 @@ use function ImageOptimizerPro\Utils\is_license_active;
 use function ImageOptimizerPro\Utils\is_local_site;
 
 /**
- * Class ImageOptimizer
+ * Class Optimizer
  */
-class ImageOptimizer {
+class Optimizer {
 	/**
 	 * Singleton.
 	 *
@@ -55,8 +55,8 @@ class ImageOptimizer {
 	 * @return object
 	 */
 	public static function factory() {
-		if ( ! is_a( self::$instance, 'ImageOptimizer' ) ) {
-			self::$instance = new ImageOptimizer();
+		if ( ! is_a( self::$instance, 'Optimizer' ) ) {
+			self::$instance = new Optimizer();
 			self::$instance->setup();
 		}
 
@@ -100,6 +100,11 @@ class ImageOptimizer {
 		// require a valid license
 		if ( ! is_license_active() ) {
 			return;
+		}
+
+		// Skip integration for Block Editor requests.
+		if ( isset( $_SERVER['HTTP_X_WP_NONCE'] ) && wp_is_json_request() ) {
+			return true;
 		}
 
 		// skip photonized urls when image optimizer active
@@ -1641,7 +1646,7 @@ class ImageOptimizer {
 	 * @since 1.0
 	 */
 	public function start_buffer() {
-		ob_start( [ '\ImageOptimizerPro\ImageOptimizer', 'end_buffering' ] );
+		ob_start( [ '\ImageOptimizerPro\Optimizer', 'end_buffering' ] );
 	}
 
 

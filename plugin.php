@@ -109,7 +109,7 @@ if ( Utils\bypass_request() ) {
 }
 
 Admin\Dashboard::factory();
-ImageOptimizer::factory();
+Optimizer::factory();
 \ImageOptimizerPro\Core\setup();
 
 register_activation_hook( __FILE__, '\ImageOptimizerPro\Core\activate' );
