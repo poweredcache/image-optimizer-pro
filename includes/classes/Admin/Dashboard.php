@@ -69,7 +69,8 @@ class Dashboard {
 		}
 
 		add_action( 'admin_init', [ $this, 'save_settings' ] );
-		\add_action( 'admin_init', [ $this, 'maybe_redirect' ] );
+		add_action( 'admin_init', [ $this, 'maybe_redirect' ] );
+		add_action( 'admin_init', [ $this, 'add_privacy_message' ] );
 	}
 
 	/**
@@ -321,6 +322,24 @@ class Dashboard {
 			$delete_function( ACTIVATION_REDIRECT_TRANSIENT );
 			\wp_safe_redirect( $redirect_url, 302, 'Image Optimizer Pro' );
 			exit;
+		}
+	}
+
+	/**
+	 * Add privacy message
+	 *
+	 * @return void
+	 * @see https://developer.wordpress.org/plugins/privacy/
+	 */
+	public function add_privacy_message() {
+		if ( function_exists( 'wp_add_privacy_policy_content' ) ) {
+			wp_add_privacy_policy_content(
+				__( 'Image Optimizer Pro', 'image-optimizer-pro' ),
+				__(
+					'We collect information about visitors who use our image optimization service, similar to what is typically recorded in standard web server access logs. Specifically, when visitors access images, we record data such as IP addresses, user agents (which identify the browser or tool used to access the image), referrer URLs (indicating the source webpage from which the image was requested), and the Site URL (the address of the webpage where the image is displayed). This type of data collection is a standard practice for monitoring and enhancing web services.',
+					'image-optimizer-pro'
+				)
+			);
 		}
 	}
 
