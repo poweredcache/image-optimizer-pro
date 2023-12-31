@@ -73,11 +73,11 @@ Yes, it works with WordPress multisite, either as a network-activated plugin or 
 Yes, it’s compatible with PHP 8+
 
 == Screenshots ==
-1. Settings Page
+1. Simple settings. Just activate your license, and you are good to go.
 
 == Changelog ==
 
-= 1.0 =
+= 1.0  (2023-12-31)=
 - Initial release
 
 == Upgrade notice ==
