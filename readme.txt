@@ -15,10 +15,13 @@ Optimize and serve your images in AVIF or webp format on-the-fly, boosting site 
 
 **Image Optimizer Pro** is your ultimate solution to optimize images efficiently. Designed for WordPress users, it automatically converts and serves images in AVIF or webp format where the browser supports, ensuring faster load times and enhanced user experience.
 
-**Key Features**:
-- **On-the-fly Image Optimization**: No need to manually convert each image. Image Optimizer Pro does it for you!
-- **Serve in AVIF or WebP**: Utilize the latest image formats for faster loading and better performance.
-- **Global Network Distribution**: Images are distributed on our extensive global network, ensuring they are served swiftly to your visitors, no matter where they are.
+= Key Features =
+
+- __On-the-fly Image Optimization__: No need to manually convert each image. Image Optimizer Pro does it for you!
+
+- __Serve in AVIF or WebP__: Utilize the latest image formats for faster loading and better performance.
+
+- __Global Network Distribution__: Images are distributed on our extensive global network, ensuring they are served swiftly to your visitors, no matter where they are.
 
 __Documentation__: [https://docs.poweredcache.com/image-optimization/](https://docs.poweredcache.com/image-optimization/)
 
