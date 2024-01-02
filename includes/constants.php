@@ -8,6 +8,7 @@
 namespace ImageOptimizerPro\Constants;
 
 const MENU_SLUG          = 'image-optimizer-pro';
+const SETTING_OPTION     = 'image_optimizer_pro_settings';
 const LICENSE_KEY_OPTION = 'image_optimizer_pro_license_key';
 
 // transient keys

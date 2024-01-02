@@ -50,6 +50,14 @@ class Optimizer {
 	protected static $image_sizes = null;
 
 	/**
+	 * Preferred image format.
+	 * It is used to determine the preferred image format for the current request.
+	 *
+	 * @var null
+	 */
+	protected static $preferred_image_formats = null;
+
+	/**
 	 * Singleton implementation
 	 *
 	 * @return object
@@ -106,6 +114,10 @@ class Optimizer {
 		if ( isset( $_SERVER['HTTP_X_WP_NONCE'] ) && wp_is_json_request() ) {
 			return true;
 		}
+
+		$settings = \ImageOptimizerPro\Utils\get_settings();
+		// set preferred image format
+		self::$preferred_image_formats = $settings['preferred_format'];
 
 		// skip photonized urls when image optimizer active
 		add_filter( 'jetpack_photon_skip_for_url', '__return_true' );
@@ -1490,6 +1502,10 @@ class Optimizer {
 
 		if ( isset( $image_url_parts['scheme'] ) && 'https' === $image_url_parts['scheme'] ) {
 			$image_optimizer_url = add_query_arg( array( 'ssl' => 1 ), $image_optimizer_url );
+		}
+
+		if ( ! empty( self::$preferred_image_formats ) && 'webp' === self::$preferred_image_formats ) {
+			$image_optimizer_url = add_query_arg( array( 'format' => 'webp' ), $image_optimizer_url );
 		}
 
 		return self::url_schema( $image_optimizer_url, $scheme );

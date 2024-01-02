@@ -19,6 +19,7 @@ use const ImageOptimizerPro\Constants\ACTIVATION_REDIRECT_TRANSIENT;
 use const ImageOptimizerPro\Constants\LICENSE_ENDPOINT;
 use const ImageOptimizerPro\Constants\LICENSE_INFO_TRANSIENT;
 use const ImageOptimizerPro\Constants\LICENSE_KEY_OPTION;
+use const ImageOptimizerPro\Constants\SETTING_OPTION;
 
 /**
  * Class Dashboard
@@ -116,6 +117,7 @@ class Dashboard {
 	public function render_dashboard() {
 		$license_key  = get_license_key();
 		$license_info = get_license_info();
+		$settings     = \ImageOptimizerPro\Utils\get_settings();
 
 		if ( is_network_admin() ) {
 			settings_errors();
@@ -138,6 +140,24 @@ class Dashboard {
 							<?php endif; ?>
 							<br />
 							<span class="description"><?php echo esc_html( get_license_status_message() ); ?></span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+						</th>
+						<td>
+							<fieldset>
+								<legend class="screen-reader-text">
+									<span><?php esc_html_e( 'Use WebP over AVIF', 'image-optimizer-pro' ); ?></span>
+								</legend>
+								<label for="preferred_format">
+									<input name="preferred_format" type="checkbox" id="preferred_format" value="webp" <?php checked( 'webp', $settings['preferred_format'] ); ?>>
+									<?php esc_html_e( 'Use WebP over AVIF', 'image-optimizer-pro' ); ?>
+								</label>
+							</fieldset>
+							<span class="description">
+								<?php esc_html_e( 'Activate this option to prioritize the WebP format over AVIF for image optimization.', 'image-optimizer-pro' ); ?>
+							</span>
 						</td>
 					</tr>
 					</tbody>
@@ -243,6 +263,9 @@ class Dashboard {
 			return;
 		}
 
+		$settings                     = [];
+		$settings['preferred_format'] = sanitize_text_field( wp_unslash( $_POST['preferred_format'] ?? '' ) );
+
 		$license_key         = sanitize_text_field( filter_input( INPUT_POST, 'license_key' ) );
 		$current_license_key = mask_string( $license_key, 3 );
 		$old_license_key     = mask_string( get_license_key(), 3 );
@@ -255,8 +278,10 @@ class Dashboard {
 		$encrypted_license_key = $encryption->encrypt( $license_key );
 
 		if ( IMAGE_OPTIMIZER_PRO_IS_NETWORK ) {
+			update_site_option( SETTING_OPTION, $settings );
 			update_site_option( LICENSE_KEY_OPTION, $encrypted_license_key );
 		} else {
+			update_option( SETTING_OPTION, $settings, false );
 			update_option( LICENSE_KEY_OPTION, $encrypted_license_key, false );
 		}
 

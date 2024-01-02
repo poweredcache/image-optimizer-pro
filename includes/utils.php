@@ -11,6 +11,7 @@ use ImageOptimizerPro\Encryption;
 use const ImageOptimizerPro\Constants\LICENSE_ENDPOINT;
 use const ImageOptimizerPro\Constants\LICENSE_INFO_TRANSIENT;
 use const ImageOptimizerPro\Constants\LICENSE_KEY_OPTION;
+use const ImageOptimizerPro\Constants\SETTING_OPTION;
 
 /**
  * Is plugin activated network wide?
@@ -296,4 +297,26 @@ function is_license_active() {
 	}
 
 	return false;
+}
+
+/**
+ * Get settings with defaults
+ *
+ * @return array
+ * @since  1.0.1
+ */
+function get_settings() {
+	$defaults = [
+		'preferred_format' => '',
+	];
+
+	if ( IMAGE_OPTIMIZER_PRO_IS_NETWORK ) {
+		$settings = get_site_option( SETTING_OPTION, [] );
+	} else {
+		$settings = get_option( SETTING_OPTION, [] );
+	}
+
+	$settings = wp_parse_args( $settings, $defaults );
+
+	return $settings;
 }
