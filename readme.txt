@@ -1,4 +1,4 @@
-=== Image Optimizer Pro ===
+=== Image Optimizer PRO - Optimize Images, Convert AVIF & WebP ===
 Contributors:      poweredcache, m_uysl
 Tags:              image optimizer, optimize images, webp, avif, image compression
 Requires at least: 5.7
@@ -16,9 +16,9 @@ Optimize and serve your images in AVIF or webp format on-the-fly, boosting site 
 **Image Optimizer Pro** is your ultimate solution to optimize images efficiently. Designed for WordPress users, it automatically converts and serves images in AVIF or webp format where the browser supports, ensuring faster load times and enhanced user experience.
 
 **Key Features**:
-* **On-the-fly Image Optimization**: No need to manually convert each image. Image Optimizer Pro does it for you!
-* **Serve in AVIF or WebP**: Utilize the latest image formats for faster loading and better performance.
-* **Global Network Distribution**: Images are distributed on our extensive global network, ensuring they are served swiftly to your visitors, no matter where they are.
+- **On-the-fly Image Optimization**: No need to manually convert each image. Image Optimizer Pro does it for you!
+- **Serve in AVIF or WebP**: Utilize the latest image formats for faster loading and better performance.
+- **Global Network Distribution**: Images are distributed on our extensive global network, ensuring they are served swiftly to your visitors, no matter where they are.
 
 __Documentation__: [https://docs.poweredcache.com/image-optimization/](https://docs.poweredcache.com/image-optimization/)
 
@@ -76,6 +76,9 @@ Yes, it’s compatible with PHP 8+
 1. Simple settings. Just activate your license, and you are good to go.
 
 == Changelog ==
+
+= 1.0.1  (2024-01-02)=
+- Added option to prefer WebP format over AVIF.
 
 = 1.0  (2023-12-31)=
 - Initial release
