@@ -80,10 +80,10 @@ Yes, it’s compatible with PHP 8+
 
 == Changelog ==
 
-= 1.0.1  (2024-01-02)=
+= 1.0.1  (2024-01-02) =
 - Added option to prefer WebP format over AVIF.
 
-= 1.0  (2023-12-31)=
+= 1.0  (2023-12-31) =
 - Initial release
 
 == Upgrade notice ==
