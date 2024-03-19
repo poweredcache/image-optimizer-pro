@@ -2,7 +2,7 @@
 Contributors:      poweredcache, m_uysl
 Tags:              image optimizer, optimize images, webp, avif, image compression
 Requires at least: 5.7
-Tested up to:      6.4
+Tested up to:      6.5
 Requires PHP:      7.2.5
 Stable tag:        1.0.1
 License:           GPLv2 or later
@@ -29,6 +29,15 @@ __Documentation__: [https://docs.poweredcache.com/image-optimization/](https://d
 
 = Contributing & Bug Report =
 Bug reports and pull requests are welcome on [Github](https://github.com/poweredcache/image-optimizer-pro/).
+
+__If you like Image Optimizer PRO, then consider checking out our other projects:__
+
+* <a href="https://poweredcache.com/" rel="friend">Powered Cache</a> – Caching and Optimization for WordPress – Easily Improve PageSpeed & Web Vitals Score
+* <a href="https://handyplugins.co/magic-login-pro/" rel="friend">Magic Login Pro</a> – Easy, secure, and passwordless authentication for WordPress.
+* <a href="https://handyplugins.co/easy-text-to-speech/" rel="friend">Easy Text-to-Speech for WordPress</a> – Transform your textual content into high-quality synthesized speech with Amazon Polly.
+* <a href="https://handyplugins.co/handywriter/" rel="friend">Handywriter</a> – AI-powered writing assistant that can help you create content for your WordPress.
+* <a href="https://handyplugins.co/paddlepress-pro/" rel="friend">PaddlePress PRO</a> – Paddle Plugin for WordPress
+* <a href="https://handyplugins.co/wp-accessibility-toolkit/" rel="friend">WP Accessibility Toolkit</a> – A collection of tools to help you make your WordPress more accessible.
 
 == Privacy Policy and Third-Party Service Disclosure ==
 
