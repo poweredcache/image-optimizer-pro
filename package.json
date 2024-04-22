@@ -21,7 +21,7 @@
     "build-release": "npm install --production=false && composer install && npm run build && npm run make-pot"
   },
   "devDependencies": {
-    "10up-toolkit": "^5.2.2"
+    "10up-toolkit": "^6.0.1"
   },
   "engines": {
     "node": ">=16"
