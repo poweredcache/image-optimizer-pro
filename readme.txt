@@ -9,7 +9,7 @@ License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Donate link:       https://poweredcache.com/donate/
 
-Optimize and serve your images in AVIF or webp format on-the-fly, boosting site performance and decreasing load times with our global network distribution.
+Optimize and serve your images in AVIF or webp format on-the-fly, boosting site performance and decreasing load times with our network distribution.
 
 == Description ==
 
