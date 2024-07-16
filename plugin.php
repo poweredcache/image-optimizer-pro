@@ -3,7 +3,7 @@
  * Plugin Name:       Image Optimizer Pro
  * Plugin URI:        https://poweredcache.com/image-optimizer-pro/
  * Description:       On-the-fly image optimization for WordPress. It automatically converts and serves images in AVIF or webp format where the browser supports, ensuring faster load times and enhanced user experience.
- * Version:           1.0.1
+ * Version:           1.1
  * Requires at least: 5.7
  * Requires PHP:      7.2.5
  * Author:            Powered Cache
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Useful global constants.
-define( 'IMAGE_OPTIMIZER_PRO_VERSION', '1.0.1' );
+define( 'IMAGE_OPTIMIZER_PRO_VERSION', '1.1' );
 define( 'IMAGE_OPTIMIZER_PRO_PLUGIN_FILE', __FILE__ );
 define( 'IMAGE_OPTIMIZER_PRO_URL', plugin_dir_url( __FILE__ ) );
 define( 'IMAGE_OPTIMIZER_PRO_PATH', plugin_dir_path( __FILE__ ) );
