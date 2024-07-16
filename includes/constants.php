@@ -16,3 +16,4 @@ const LICENSE_INFO_TRANSIENT        = 'image_optimizer_pro_license_info'; // lic
 const ACTIVATION_REDIRECT_TRANSIENT = 'image_optimizer_pro_activation_redirect';
 
 const LICENSE_ENDPOINT = 'https://poweredcache.com/wp-json/paddlepress-api/v1/license';
+const PURGE_ENDPOINT   = 'https://poweredcache.com/wp-json/image-optimizer/v1/purge';

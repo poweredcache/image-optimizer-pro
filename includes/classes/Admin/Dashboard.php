@@ -19,6 +19,8 @@ use const ImageOptimizerPro\Constants\ACTIVATION_REDIRECT_TRANSIENT;
 use const ImageOptimizerPro\Constants\LICENSE_ENDPOINT;
 use const ImageOptimizerPro\Constants\LICENSE_INFO_TRANSIENT;
 use const ImageOptimizerPro\Constants\LICENSE_KEY_OPTION;
+use const ImageOptimizerPro\Constants\MENU_SLUG;
+use const ImageOptimizerPro\Constants\PURGE_ENDPOINT;
 use const ImageOptimizerPro\Constants\SETTING_OPTION;
 
 /**
@@ -69,9 +71,12 @@ class Dashboard {
 			add_action( 'admin_menu', [ $this, 'add_menu' ] );
 		}
 
+		add_action( 'admin_notices', [ $this, 'maybe_display_message' ] );
+
 		add_action( 'admin_init', [ $this, 'save_settings' ] );
 		add_action( 'admin_init', [ $this, 'maybe_redirect' ] );
 		add_action( 'admin_init', [ $this, 'add_privacy_message' ] );
+		add_action( 'admin_post_image_optimizer_pro_cache_purge', [ $this, 'handle_cache_purge' ] );
 	}
 
 	/**
@@ -162,7 +167,16 @@ class Dashboard {
 					</tr>
 					</tbody>
 				</table>
-				<?php submit_button( esc_html__( 'Save Changes', 'image-optimizer-pro' ), 'submit primary' ); ?>
+				<p>
+					<?php submit_button( esc_html__( 'Save Changes', 'image-optimizer-pro' ), 'submit primary', 'submit', false ); ?>
+					<?php if ( ! is_multisite() && ! is_local_site() && false !== $license_info && 'valid' === $license_info['license_status'] ) : ?>
+						<a
+							href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=image_optimizer_pro_cache_purge' ), 'image_optimizer_pro_cache_purge' ) ); ?>"
+							class="button-secondary" id="clear_image_optimizer_pro_cache">
+							<?php esc_html_e( 'Clear Image Optimizer Cache', 'image-optimizer-pro' ); ?>
+						</a>
+					<?php endif; ?>
+				</p>
 			</form>
 		</div>
 
@@ -366,6 +380,121 @@ class Dashboard {
 				)
 			);
 		}
+	}
+
+	/**
+	 * Handle cache purge
+	 *
+	 * @return void
+	 */
+	public function handle_cache_purge() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have sufficient permissions to perform this action.', 'image-optimizer-pro' ) );
+		}
+
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'image_optimizer_pro_cache_purge' ) ) {
+			wp_die( esc_html__( 'Nonce verification failed.', 'image-optimizer-pro' ) );
+		}
+
+		$response = $this->purge_image_optimizer_cache();
+
+		if ( ! is_wp_error( $response ) && ! empty( $response['success'] ) ) {
+			$redirect_url = add_query_arg( 'iop_action', 'purge_image_optimizer_cache', wp_get_referer() );
+		} else {
+			$redirect_url = add_query_arg( 'iop_action', 'purge_image_optimizer_cache_failed', wp_get_referer() );
+		}
+
+		wp_safe_redirect( esc_url_raw( $redirect_url ) );
+		exit;
+	}
+
+	/**
+	 * Purge Image Optimizer cache
+	 *
+	 * @return mixed|\WP_Error|null
+	 */
+	public function purge_image_optimizer_cache() {
+		if ( is_multisite() ) {
+			return new \WP_Error( 'multisite_not_supported', esc_html__( 'Multisite is not supported for Image Optimizer Purge.', 'image-optimizer-pro' ) );
+		}
+
+		$body = wp_json_encode(
+			[
+				'license_key' => get_license_key(),
+				'license_url' => home_url(),
+			]
+		);
+
+		$response = wp_remote_post(
+			PURGE_ENDPOINT,
+			[
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+				'body'    => $body,
+			]
+		);
+
+		if ( is_wp_error( $response ) ) {
+			$error_message = $response->get_error_message();
+
+			return new \WP_Error( 'request_failed', esc_html__( 'Request failed: ', 'image-optimizer-pro' ) . $error_message );
+		}
+
+		$response_body = wp_remote_retrieve_body( $response );
+
+		return json_decode( $response_body, true );
+	}
+
+
+	/**
+	 * Maybe display feedback messages when certain action is taken
+	 *
+	 * @since 1.1
+	 */
+	public function maybe_display_message() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['iop_action'] ) ) {
+			return;
+		}
+
+		/**
+		 * Dont display multiple message when saving the options while having the query_params
+		 */
+		if ( ! empty( $_POST ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+
+		$success_messages = [
+			'purge_image_optimizer_cache' => esc_html__( 'Image optimizer cache purged successfully!', 'image-optimizer-pro' ),
+		];
+
+		$err_messages = [
+			'purge_image_optimizer_cache_failed' => esc_html__( 'Could not purge image optimizer cache. Please try again later and ensure your license key is activated!', 'image-optimizer-pro' ),
+		];
+
+		if ( isset( $success_messages[ $_GET['iop_action'] ] ) ) {
+			if ( MENU_SLUG === $screen->parent_base ) { // display with shared-ui on plugin page
+				add_settings_error( $screen->parent_file, MENU_SLUG, $success_messages[ $_GET['iop_action'] ], 'success' ); // phpcs:ignore
+
+				return;
+			}
+
+			printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $success_messages[ $_GET['iop_action'] ] ); // phpcs:ignore
+		}
+
+		if ( isset( $err_messages[ $_GET['iop_action'] ] ) ) {
+			if ( MENU_SLUG === $screen->parent_base ) { // display with shared-ui on plugin page
+				add_settings_error( $screen->parent_file, MENU_SLUG, $err_messages[ $_GET['iop_action'] ], 'error' ); // phpcs:ignore
+
+				return;
+			}
+
+			printf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', $err_messages[ $_GET['iop_action'] ] ); // phpcs:ignore
+		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 }
