@@ -2,9 +2,9 @@
 Contributors:      poweredcache, m_uysl
 Tags:              image optimizer, optimize images, webp, avif, image compression
 Requires at least: 5.7
-Tested up to:      6.7
+Tested up to:      6.8
 Requires PHP:      7.2.5
-Stable tag:        1.1
+Stable tag:        1.1.1
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Donate link:       https://poweredcache.com/donate/
@@ -88,6 +88,10 @@ Yes, it’s compatible with PHP 8+
 1. Simple settings. Just activate your license, and you are good to go.
 
 == Changelog ==
+
+= 1.1.1  (2025-04-14) =
+- [Updated] Dependencies.
+- [Tested] Compatibility with WordPress 6.8
 
 = 1.1  (2024-07-16) =
 - [Added] Cache purge feature.
