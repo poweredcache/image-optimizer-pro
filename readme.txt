@@ -94,7 +94,7 @@ Yes, it’s compatible with PHP 8+
 = 1.1.3  (2026-08-19) =
 - Minor tweaks and improvements.
 - [Updated] Dependencies.
-- [Tested] Compatibility with WordPress 6.9
+- [Tested] Compatibility with WordPress 7.1
 
 = 1.1.2  (2025-11-23) =
 - [Updated] Dependencies.
