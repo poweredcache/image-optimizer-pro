@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Powered Cache
+# Copyright (C) 2026 Powered Cache
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Image Optimizer Pro 1.1.2\n"
+"Project-Id-Version: Image Optimizer Pro 1.1.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/image-optimizer-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-23T13:42:19+00:00\n"
+"POT-Creation-Date: 2026-08-19T13:08:34+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: image-optimizer-pro\n"
