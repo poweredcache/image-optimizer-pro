@@ -13,3 +13,16 @@ Optimize and serve your images in AVIF or webp format on-the-fly, boosting site 
 * **Global Network Distribution**: Images are distributed on our extensive global network, ensuring they are served swiftly to your visitors, no matter where they are.
 
 __Documentation__: [https://docs.poweredcache.com/image-optimization/](https://docs.poweredcache.com/image-optimization/)
+
+## Other Projects ##
+
+If you like Image Optimizer PRO, then consider checking out our other projects:
+
+* <a href="https://handyplugins.co/magic-login-pro/" rel="friend">Magic Login Pro</a> – Easy, secure, and passwordless authentication for WordPress.
+* <a href="https://handyplugins.co/sessionquota-pro/" rel="friend">SessionQuota Pro</a> – Limit concurrent sessions in WordPress.
+* <a href="https://handyplugins.co/stream-integration-pro/" rel="friend">Stream Integration Pro</a> – Upload, sync, restore, and manage WordPress videos with Cloudflare Stream.
+* <a href="https://handyplugins.co/easy-text-to-speech/" rel="friend">Easy Text-to-Speech</a> – Convert written content into high-quality synthesized speech for WordPress.
+* <a href="https://handyplugins.co/handywriter/" rel="friend">Handywriter</a> – AI-powered writing assistant for WordPress.
+* <a href="https://handyplugins.co/paddlepress-pro/" rel="friend">PaddlePress PRO</a> – Paddle plugin for WordPress.
+* <a href="https://handyplugins.co/wp-accessibility-toolkit/" rel="friend">WP Accessibility Toolkit</a> – Tools to help make your WordPress site more accessible.
+* <a href="https://poweredcache.com/" rel="friend">Powered Cache</a> – Caching and optimization for WordPress to help improve PageSpeed and Core Web Vitals.
